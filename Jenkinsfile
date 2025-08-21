@@ -1,13 +1,6 @@
 pipeline {
   agent any
 
-  stages {
-    stage('Checkout') {
-      steps {
-        git url: 'file:///C:/path/to/your/local/repo'  // or your GitHub URL
-      }
-    }
-
     stage('Build Docker Images') {
       steps {
         script {
