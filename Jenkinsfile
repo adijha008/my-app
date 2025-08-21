@@ -24,7 +24,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'echo Add your test commands here'
+        sh 'echo "Add your test commands here"'
       }
     }
   }
