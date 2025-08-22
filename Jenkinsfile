@@ -1,4 +1,4 @@
-pipeline {
+]pipeline {
   agent any
 
   stages {
@@ -33,12 +33,13 @@ pipeline {
       steps {
         // Find the container ID for the backend service and run tests inside it
         sh '''
-          CONTAINER_ID=$(docker ps -qf "name=backend")
+          CONTAINER_ID=$(docker ps -qf "name=backend" | head -n 1)
           if [ -z "$CONTAINER_ID" ]; then
-            echo "Backend container not running!"
+            echo "❌ Backend container not running!"
             exit 1
           fi
-          docker exec $CONTAINER_ID npm test
+          echo "✅ Running tests inside container: $CONTAINER_ID"
+          docker exec "$CONTAINER_ID" npm test
         '''
       }
     }
