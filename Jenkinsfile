@@ -31,7 +31,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'echo "✅ Tests go here"'
+        sh 'npm test'
       }
     }
   }
