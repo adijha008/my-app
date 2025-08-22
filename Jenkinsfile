@@ -4,21 +4,34 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        // No need to deleteDir() before checkout
         checkout scm
       }
     }
 
-    stage('Clean Workspace (Optional)') {
+    stage('Clean Build Folders') {
       steps {
-        // If you want to clean build artifacts, do it selectively
-        sh 'rm -rf client/build server/build'  // Adjust as needed
+        // Clean only the relevant build folders, NOT the .git directory
+        sh 'rm -rf client/build server/build || true'
       }
     }
 
-    stage('Print Git Status') {
+    stage('Build Docker Images') {
       steps {
-        sh 'git status'
+        sh 'docker build -t myapp-frontend ./client'
+        sh 'docker build -t myapp-backend ./server'
+      }
+    }
+
+    stage('Run Containers') {
+      steps {
+        sh 'docker-compose down || true'
+        sh 'docker-compose up -d --build'
+      }
+    }
+
+    stage('Test') {
+      steps {
+        sh 'echo "✅ Tests go here"'
       }
     }
   }
