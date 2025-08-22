@@ -1,6 +1,11 @@
 pipeline {
   agent any
 
+  options {
+    // Only necessary if you’ve disabled implicit checkout before
+    skipDefaultCheckout(false)
+  }
+
   stages {
     stage('Clean Workspace') {
       steps {
@@ -16,7 +21,7 @@ pipeline {
 
     stage('Print Git Status') {
       steps {
-        sh 'git status'
+        sh 'git status' // Should work now
       }
     }
   }
