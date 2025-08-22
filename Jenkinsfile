@@ -10,8 +10,8 @@ pipeline {
 
     stage('Build Docker Images') {
       steps {
-        sh 'docker build -t myapp-frontend ./frontend'
-        sh 'docker build -t myapp-backend ./backend'
+        sh 'docker build -t myapp-frontend ./client'
+        sh 'docker build -t myapp-backend ./server'
       }
     }
 
