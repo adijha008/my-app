@@ -1,12 +1,12 @@
 pipeline {
   agent any
 
-  stages {
-    stage('Checkout') {
-      steps {
-        git url: 'https://github.com/adijha008/my-app.git', branch: 'main'
-      }
+  stage('Checkout') {
+    steps {
+        checkout scm
     }
+}
+
 
     stage('Build Docker Images') {
       steps {
