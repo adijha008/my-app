@@ -7,6 +7,8 @@ pipeline {
     }
 }
 
+sh 'ls -l'
+sh 'ls -l client'
 
     stage('Build Docker Images') {
       steps {
