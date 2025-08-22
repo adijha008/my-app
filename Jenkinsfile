@@ -1,14 +1,14 @@
 pipeline {
   agent any
 
-  stage('Checkout') {
-    steps {
+  stages {
+    stage('Checkout') {
+      steps {
         checkout scm
+        sh 'ls -l'
+        sh 'ls -l client'
+      }
     }
-}
-
-sh 'ls -l'
-sh 'ls -l client'
 
     stage('Build Docker Images') {
       steps {
