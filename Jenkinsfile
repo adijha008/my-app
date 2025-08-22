@@ -30,11 +30,22 @@ pipeline {
     }
 
     stage('Test') {
+      
+      
+      
       steps {
-        sh 'npm test'
-      }
-    }
+        
+        // Find the container ID for the backend service
+        sh '''
+          CONTAINER_ID=$(docker ps -qf "name=backend")
+          if [ -z "$CONTAINER_ID" ]; then
+            echo "Backend container not running!"
+            exit 1
+          fi
+          docker exec $CONTAINER_ID npm test
+    '''
   }
+}
 
   post {
     always {
