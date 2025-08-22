@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "jest": "^30.0.5",
+    "supertest": "^7.1.4"
+  },
+  "dependencies": {
+    "docker": "^0.2.14",
+    "react": "^19.1.1"
+  }
+}
