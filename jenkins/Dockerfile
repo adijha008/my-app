@@ -12,5 +12,3 @@ RUN apt-get update && \
 
 # ✅ Add this line before usermod to create the docker group
 RUN groupadd docker && usermod -aG docker jenkins
-
-USER jenkins
