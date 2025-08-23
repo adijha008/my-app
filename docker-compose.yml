@@ -24,7 +24,7 @@ services:
 
   jenkins:
     build:
-      context: ./jenkins  # 👈 Folder with Jenkins Dockerfile
+      context: ./jenkins
     container_name: jenkins
     ports:
       - "8081:8080"
