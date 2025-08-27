@@ -10,7 +10,15 @@ pipeline {
 
     stage('Checkout') {
       steps {
-        checkout scm
+        checkout([
+          $class: 'GitSCM',
+          branches: [[name: '*/main']],
+          userRemoteConfigs: [[
+            url: 'https://github.com/adijha008/my-app.git'
+            // credentialsId: 'your-creds-id' // If private repo
+          ]],
+          extensions: [[$class: 'WipeWorkspace']]
+        ])
       }
     }
 
