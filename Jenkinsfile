@@ -7,9 +7,7 @@ pipeline {
         cleanWs()
       }
     }
-  }
 
-  stages {
     stage('Checkout') {
       steps {
         checkout scm
@@ -18,7 +16,6 @@ pipeline {
 
     stage('Clean Build Folders') {
       steps {
-        // Clean only the relevant build folders, NOT the .git directory
         sh 'rm -rf client/build server/build || true'
       }
     }
@@ -34,13 +31,11 @@ pipeline {
       steps {
         sh 'docker compose down || true'
         sh 'docker compose up -d --build'
-
       }
     }
 
     stage('Test') {
       steps {
-        // Find the container ID for the backend service and run tests inside it
         sh '''
           CONTAINER_ID=$(docker ps -qf "name=backend" | head -n 1)
           if [ -z "$CONTAINER_ID" ]; then
